@@ -1,0 +1,18 @@
+From phedman@perle.com Tue Aug 26 07:32:20 AM EDT 2025
+From: phedman@perle.com <phedman@perle.com>
+To: phedman@perle.com
+Subject: Fix Makefile to make noninteractive
+
+diff --git a/Makefile b/Makefile
+index aa54f6089..3eeb24477 100644
+--- a/Makefile
++++ b/Makefile
+@@ -271,7 +271,7 @@ ifneq ($(wildcard $(STARTUP_DIR)/startup.conf),)
+ endif
+ 
+ ifeq ($(findstring y,$(UNATTENDED)),y)
+-DEBIAN_FRONTEND=noninteractive
++export DEBIAN_FRONTEND=noninteractive
+ CONFIRM=-y
+ FORCE=--allow-downgrades --allow-remove-essential --allow-change-held-packages
+ endif
